@@ -1,0 +1,80 @@
+<div class='container mt-4'>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="/actor/create">Registro Actores</a>
+      </li>
+      <li class="breadcrumb-item active">Registro Participaciones</li>
+    </ol>
+    <div>
+    </div>
+    <div class="" style="padding: 20px">
+      <div class="border-bottom mb-4">
+        <h1>Registro Participaciones</h1>
+      </div>
+      <form action="/participacion/add" enctype="application/x-www-form-urlencoded" method="POST" class="needs-validation" novalidate>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="titulo">Titulo</label>
+            <input type="text" class="form-control" name="titulo" id="titulo" placeholder="titulo..." value="" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="anoR">Ano realizacion</label>
+            <input type="date" class="form-control" id="anoR" name="anoR" placeholder="fecha de realizacion" value="" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+              <label for="number">Duracion en minutos</label>
+              <input type="number" class="form-control" id="number" name="number" placeholder="12000" value="" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+          </div>
+          <div class="col-md-6 mb-3">
+              <label for="papel">Papel</label>
+              <input type="text" class="form-control" id="papel" name="papel" placeholder="papel..." value="" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="actor">Actor</label>
+            <select name="actor" id="actor" class="form-control">
+                <!-- selected -->
+              <% for (option of select) { %> 
+                <option value="<%=option.id%>"><%=option['nombre_real']%></option>
+              <%}%>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+      </form>
+  
+      <script>
+        (function () {
+          'use strict';
+          window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+              form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+      </script>
+    </div>
+  </div>

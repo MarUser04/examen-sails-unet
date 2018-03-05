@@ -6,6 +6,9 @@
  */
 
 module.exports = {
-	
+	login: (req, res) => {
+    req.session.authenticated = true
+    res.redirect('/actor')
+  }
 };
 

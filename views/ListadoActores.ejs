@@ -22,14 +22,13 @@
             <% for (let i = 0; i < actores.length; i++) { %>
               <tr>
                 <td scope="row">
-                  <%= JSON.stringify(actores[i]) %>
+                  <%= actores[i]['nombre_real'] %>
                 </td>
-                <td>sp</td>
-                <td>sp</td>
+                <td><%= actores[i]['nombre_celebre'] %></td>
+                <td><%= actores[i]['cantidad_oscares'] %></td>
                 <td scope="row" class="d-flex justify-content-around">
-                  <button style="margin:0.25em" class="btn btn-primary">Actualizar</button>
-                  <button style="margin:0.25em" class="btn btn-danger">Eliminar</button>
-                  <button style="margin:0.25em" class="btn btn-primary">Ver detalles</button>
+                  <button style="margin:0.25em" class="btn btn-primary" onclick="updateActor(<%= actores[i].id %>)">Ver/Editar</button>
+                  <button style="margin:0.25em" class="btn btn-danger" onclick="deleteActor(<%= actores[i].id %>)">Eliminar</button>
                 </td>
               </tr>
             <% } %>
@@ -40,11 +39,12 @@
     </div>
   </div>
   <script>
-    function updateActor () {
-
+    function updateActor (id) {
+      window.location.href = `actor/editInDetails?id=${id}`
     }
 
-    function deleteActor () {
-
+    function deleteActor (id) {
+      let r = confirm(`seguro que quiere eliminar el actor ${id}`)
+      // r
     }
   </script>

@@ -26,7 +26,8 @@ module.exports = {
       required: true
     },
     actor: {
-      model: 'actor'
+      model: 'actor',
+      unique: true
     }
   }
 };

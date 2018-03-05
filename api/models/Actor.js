@@ -25,7 +25,7 @@ module.exports = {
     sexo: {
       type: 'string',
       required: true,
-      anum: ['m', 'f']
+      enum: ['m', 'f']
     },
     cantidad_oscares: {
       type: 'integer',
