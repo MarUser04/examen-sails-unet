@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Actores en Sistema</li>
+    </ol>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <h1 style="float:left"> Actores </h1>
+        <!-- <button style="margin:0.35em 1em;float:left" class="btn btn-success">Add more</button> -->
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nombre Real</th>
+            <th scope="col">Nombre Celebridad</th>
+            <th scope="col">Nombre Cantidad Oscares</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%if (typeof actores !== 'undefined') {%>
+            <% for (let i = 0; i < actores.length; i++) { %>
+              <tr>
+                <td scope="row">
+                  <%= JSON.stringify(actores[i]) %>
+                </td>
+                <td>sp</td>
+                <td>sp</td>
+                <td scope="row" class="d-flex justify-content-around">
+                  <button style="margin:0.25em" class="btn btn-primary">Actualizar</button>
+                  <button style="margin:0.25em" class="btn btn-danger">Eliminar</button>
+                  <button style="margin:0.25em" class="btn btn-primary">Ver detalles</button>
+                </td>
+              </tr>
+            <% } %>
+          <%}%>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+    function updateActor () {
+
+    }
+
+    function deleteActor () {
+
+    }
+  </script>
