@@ -34,9 +34,6 @@ module.exports = {
     catidad_nominaciones: {
       type: 'integer',
       required: true
-    },
-    participaciones: {
-      collection: 'participacion'
     }
   }
 };

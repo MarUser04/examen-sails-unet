@@ -13,7 +13,8 @@ module.exports = {
       })
       
       res.view('ParticipacionForm', {
-        select: actors
+        select: actors,
+        on: req.query.id || 0
       })
     }
     catch (err) {
@@ -39,7 +40,7 @@ module.exports = {
           'ano_realizacion': anoR,
           'duracion_mn': number,
           'papel': papel,
-          'actor': actor
+          'actor_id': actor
         })
 
         res.redirect('/actor')
@@ -49,6 +50,32 @@ module.exports = {
         })
       }
     }
+  },
+  list: async (req, res) => {
+    let all = await Participacion.find()
+
+    res.view('Todas', {
+      all
+    })
+  },
+  details: async (req, res) =>{ 
+    const { id } = req.query
+    if (!id) {
+      res.redirect('/')
+    }
+    
+    let that = await Participacion.findOne(id)
+    res.view('DetailsParticipate', {
+      that
+    })
+  },
+  update: async (req, res) => {
+    if (!req.body.id) {
+      res.redirect('/')
+    }
+
+    let r = await Participacion.update(req.body.id, req.body)
+    res.redirect('/participacion/list')
   }
 };
 

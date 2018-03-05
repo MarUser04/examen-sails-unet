@@ -25,9 +25,9 @@ module.exports = {
       type: 'string',
       required: true
     },
-    actor: {
-      model: 'actor',
-      unique: true
+    'actor_id': {
+      type: 'string',
+      required: true
     }
   }
 };

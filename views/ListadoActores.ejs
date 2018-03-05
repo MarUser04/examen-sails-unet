@@ -11,6 +11,7 @@
         <!-- <button style="margin:0.35em 1em;float:left" class="btn btn-success">Add more</button> -->
         <thead class="thead-dark">
           <tr>
+            <th scope="col">#</th>
             <th scope="col">Nombre Real</th>
             <th scope="col">Nombre Celebridad</th>
             <th scope="col">Nombre Cantidad Oscares</th>
@@ -21,6 +22,9 @@
           <%if (typeof actores !== 'undefined') {%>
             <% for (let i = 0; i < actores.length; i++) { %>
               <tr>
+                  <td scope="row">
+                      <%= actores[i]['id'] %>
+                    </td>
                 <td scope="row">
                   <%= actores[i]['nombre_real'] %>
                 </td>
@@ -45,6 +49,8 @@
 
     function deleteActor (id) {
       let r = confirm(`seguro que quiere eliminar el actor ${id}`)
-      // r
+      if (r) {
+        window.location.href = `/actor/destroy/${id}`
+      }
     }
   </script>

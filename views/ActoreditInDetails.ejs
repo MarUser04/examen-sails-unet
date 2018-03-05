@@ -9,41 +9,42 @@
     </div>
     <div class="" style="padding: 20px">
       <div class="border-bottom mb-4">
-        <h1>Editar Actore</h1>
+        <h1>Editar/Detalle Actore</h1>
       </div>
-      <form action="/actor/update" enctype="application/x-www-form-urlencoded" method="POST" class="needs-validation" novalidate>
+      <form action="/actor/update?id=<%=actorDefault['id']%>" enctype="application/x-www-form-urlencoded" method="POST" class="needs-validation" novalidate>
+        <input type="text" value="<%=actorDefault['id']%>" name="id" hidden>
         <div class="form-row">
           <div class="col-md-6 mb-3">
             <label for="nombreReal">Nombre real</label>
-            <input type="text" class="form-control" name="nombreReal" id="nombreReal" placeholder="nombre Real" value="<%=actorDefault['nombre_real']%>" required>
+            <input type="text" class="form-control" name="nombreReal" id="nombreReal" placeholder="nombre Real" value="<%=actorDefault['nombre_real']%>">
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="nombreCelebridad">Nombre de celebridad</label>
-            <input type="text" class="form-control" id="nombreCelebridad" name="nombreCelebridad" placeholder="nombre como celebridad" value="<%=actorDefault['nombre_celebre']%>" required>
+            <input type="text" class="form-control" id="nombreCelebridad" name="nombreCelebridad" placeholder="nombre como celebridad" value="<%=actorDefault['nombre_celebre']%>">
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-6 mb-3">
               <label for="date">Fecha de nacimiento</label>
-              <input type="date" class="form-control" id="date" name="date" placeholder="fecha nacimiento" value="<%=actorDefault['fecha_nacimiento']%>" required>
+              <input type="date" class="form-control" id="date" name="date" placeholder="fecha nacimiento" value="<%=Date(actorDefault['fecha_nacimiento'])%>">
               <div class="valid-feedback">
                 Looks good!
               </div>
           </div>
           <div class="col-md-6 mb-3">
               <label for="cantidad">Cantidad Oscares</label>
-              <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="cantidad oscares" value="<%=actorDefault['cantidad_oscares']%>" required>
+              <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="cantidad oscares" value="<%=actorDefault['cantidad_oscares']%>">
               <div class="valid-feedback">
                 Looks good!
               </div>
           </div>
           <div class="col-md-6 mb-3">
               <label for="nominaciones">Cantidad nominaciones</label>
-              <input type="number" class="form-control" id="nominaciones" name="nominaciones" placeholder="cantidad nominaciones" value="<%=actorDefault['catidad_nominaciones']%>" required>
+              <input type="number" class="form-control" id="nominaciones" name="nominaciones" placeholder="cantidad nominaciones" value="<%=actorDefault['catidad_nominaciones']%>">
               <div class="valid-feedback">
                 Looks good!
               </div>
@@ -61,7 +62,47 @@
           <button class="btn btn-primary" type="submit">Update</button>
         </div>
       </form>
-  
+      <table class="table mt-4">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>titulo</th>
+            <th>ano</th>
+            <th>duracion mn</th>
+            <th>papel</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (thatone of actorParticipate) {%>
+            <tr>
+                <td>
+                  <%=thatone.id%>
+                </td>
+                <td>
+                  <%=thatone.titulo%>
+                </td>
+                <td>
+                  <%=thatone['ano_realizacion']%>
+                </td>
+                <td>
+                  <%=thatone['duracion_mn']%> <em>mn</em>
+                </td>
+                <td>
+                    <%=thatone['papel']%>
+                </td>
+                <td>
+                  <button class="btn btn-danger" onclick="removeOne(<%=thatone['id']%>)">
+                    Eliminar
+                  </button>
+                  <button class="btn btn-warning" onclick="updateOne(<%=thatone['id']%>)">
+                    Detalle/Editar
+                  </button>
+                </td>
+              </tr>
+          <%}%>
+        </tbody>
+      </table>
       <script>
         (function () {
           'use strict';
@@ -80,6 +121,17 @@
             });
           }, false);
         })();
+
+        function removeOne (id) {
+          let r = confirm(`seguro que quiere eliminar registro de participacion!? ${id}`)
+            if (r) {
+              window.location.href = `/participacion/destroy/${id}`
+            }
+        }
+
+        function updateOne (id) {
+          window.location.href = `/participacion/details?id=${id}`
+        }
       </script>
     </div>
   </div>

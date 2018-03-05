@@ -1,0 +1,54 @@
+<div class="container">
+    <table class="table mt-4">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>titulo</th>
+            <th>ano</th>
+            <th>duracion mn</th>
+            <th>papel</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (thatone of all) {%>
+            <tr>
+                <td>
+                  <%=thatone.id%>
+                </td>
+                <td>
+                  <%=thatone.titulo%>
+                </td>
+                <td>
+                  <%=thatone['ano_realizacion']%>
+                </td>
+                <td>
+                  <%=thatone['duracion_mn']%> <em>mn</em>
+                </td>
+                <td>
+                    <%=thatone['papel']%>
+                </td>
+                <td>
+                  <button class="btn btn-danger" onclick="removeOne(<%=thatone['id']%>)">
+                    Eliminar
+                  </button>
+                  <button class="btn btn-warning" onclick="updateOne(<%=thatone['id']%>)">
+                    Detalle/Editar
+                  </button>
+                </td>
+              </tr>
+          <%}%>
+        </tbody>
+      </table>
+</div>
+<script>
+  function removeOne (id) {
+    let r = confirm(`seguro que quiere eliminar registro de participacion!? ${id}`)
+      if (r) {
+        window.location.href = `/participacion/destroy/${id}`
+      }
+  }
+  function updateOne (id) {
+    window.location.href = `/participacion/details?id=${id}`
+  }
+</script>

@@ -12,52 +12,42 @@
     </div>
     <div class="" style="padding: 20px">
       <div class="border-bottom mb-4">
-        <h1>Registro Participaciones</h1>
+        <h1>Actualizar Registro Participaciones</h1>
       </div>
-      <form action="/participacion/add" enctype="application/x-www-form-urlencoded" method="POST" class="needs-validation" novalidate>
+      <form action="/participacion/update" enctype="application/x-www-form-urlencoded" method="POST" class="needs-validation" novalidate>
+        <input type="text" name="id" value="<%=that.id%>" hidden>
         <div class="form-row">
           <div class="col-md-6 mb-3">
             <label for="titulo">Titulo</label>
-            <input type="text" class="form-control" name="titulo" id="titulo" placeholder="titulo..." value="" required>
+            <input type="text" class="form-control" name="titulo" id="titulo" placeholder="titulo..." value="<%=that['titulo']%>">
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="anoR">Ano realizacion</label>
-            <input type="date" class="form-control" id="anoR" name="anoR" placeholder="fecha de realizacion" value="" required>
+            <input type="date" class="form-control" id="anoR" name="anoR" placeholder="fecha de realizacion" value="<%=that['ano_realizacion']%>">
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-6 mb-3">
               <label for="number">Duracion en minutos</label>
-              <input type="number" class="form-control" id="number" name="number" placeholder="12000" value="" required>
+              <input type="number" class="form-control" id="number" name="number" placeholder="12000" value="<%=that['duracion_mn']%>">
               <div class="valid-feedback">
                 Looks good!
               </div>
           </div>
           <div class="col-md-6 mb-3">
               <label for="papel">Papel</label>
-              <input type="text" class="form-control" id="papel" name="papel" placeholder="papel..." value="" required>
+              <input type="text" class="form-control" id="papel" name="papel" placeholder="papel..." value="<%=that['papel']%>" />
               <div class="valid-feedback">
                 Looks good!
               </div>
           </div>
-          <div class="col-md-6 mb-3">
-            <label for="actor">Actor</label>
-            <select name="actor" id="actor" class="form-control">
-              <% for (option of select) { %> 
-                <% if (option.id === on) { %>
-                  <option selected value="<%=option.id%>"><%=option['nombre_real']%></option>
-                <%} else {%>
-                  <option value="<%=option.id%>"><%=option['nombre_real']%></option>
-                <%}%>
-              <%}%>
-            </select>
           </div>
         </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit">Submit Actualizacion</button>
       </form>
   
       <script>

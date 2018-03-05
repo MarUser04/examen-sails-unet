@@ -36,7 +36,7 @@ module.exports = {
           'catidad_nominaciones': nominaciones
         })
   
-        res.redirect('/participacion/create')
+        res.redirect(`/participacion/create?id=${r.id}`)
       }
       catch (err) {
         res.json(err)
@@ -50,15 +50,43 @@ module.exports = {
       res.redirect('/actor')
     }
     else {
-      let actorDefault = await Actor.findOne(id).populate('participaciones')
+      let actorDefault = await Actor.findOne(id)
+      let actorParticipate = await Participacion.find({
+        'actor_id': id
+      })
       if (!actorDefault) {res.redirect('/actor')}
+      
       res.view('ActoreditInDetails', {
-        actorDefault
+        actorDefault,
+        actorParticipate
       })
     }
   },
   update: async (req, res) => {
-    res.json(req.body)
+    const { 
+      nombreReal,
+      nombreCelebridad,
+      date,
+      cantidad,
+      nominaciones,
+      sexo,
+      id
+    } = req.body
+    try {
+      let r = await Actor.update(id, {
+        'nombre_real': nombreReal,
+        'nombre_celebre': nombreCelebridad,
+        'fecha_nacimiento': Date(date),
+        'sexo': sexo,
+        'cantidad_oscares': cantidad,
+        'catidad_nominaciones': nominaciones
+      })
+
+      res.redirect('/actor')
+
+    } catch (err) {
+      res.json(err)
+    }
   }
 };
 
